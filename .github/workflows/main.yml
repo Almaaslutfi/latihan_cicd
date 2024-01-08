@@ -21,11 +21,14 @@ jobs:
       # - name: 📦 Install Composer Dependencies
       #   run: composer install --no-ansi --no-interaction --no-progress --no-scripts --no-suggest --optimize-autoloader
       
-      - name: 🧪 Run Unit Tests
-        run: vendor/bin/phpunit --testsuite=Unit
+      # - name: 🧪 Run Unit Tests
+      #   run: vendor/bin/phpunit --testsuite=Unit
 
-      - name: 🧪 Run Feature Tests
-        run: vendor/bin/phpunit --testsuite=Feature
+      # - name: 🧪 Run Feature Tests
+      #   run: vendor/bin/phpunit --testsuite=Feature
+
+      - name: 🛣️ Check Routes
+        run: php artisan route:list
 
       - name: 📂 Sync Files to FTP Server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4

@@ -63,7 +63,7 @@
                                 <div class="card-body">
 
                                     <div class="pt-3 pb-2">
-                                        <h5 class="card-title text-center pb-0 fs-4">LOGIN DISINI</h5>
+                                        <h5 class="card-title text-center pb-0 fs-4">LOGIN ng ndi</h5>
                                     </div>
                                     <form action="{{ route('login-proses') }}" method="post">
                                         @csrf

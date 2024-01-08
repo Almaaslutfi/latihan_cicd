@@ -1,28 +1,34 @@
-name: Laravel CI/CD
-
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    branches:
+      - master
+
+name: 🚀 Deploy Laravel Website on Push
 
 jobs:
   web-deploy:
-    name: Deploying
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+      - name: 🚚 Get Latest Code
+        uses: actions/checkout@v3
+
+      - name: ⚙️ Set Up PHP
+        uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-      - uses: actions/checkout@v3
-      - name: Copy .env
-        run: cp .env.example .env
-      - name: Install Dependencies
-        run: composer update --ignore-platform-reqs
-      - name: Directory Permissions
-        run: chmod -R 775 storage
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.3.4
+
+      - name: 📦 Install Composer Dependencies
+        run: composer install --no-ansi --no-interaction --no-progress --no-scripts --no-suggest --optimize-autoloader
+      
+      - name: 🧪 Run Unit Tests
+        run: vendor/bin/phpunit --testsuite=Unit
+
+      - name: 🧪 Run Feature Tests
+        run: vendor/bin/phpunit --testsuite=Feature
+
+      - name: 📂 Sync Files to FTP Server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USER }}

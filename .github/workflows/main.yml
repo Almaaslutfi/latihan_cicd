@@ -18,8 +18,8 @@ jobs:
         with:
           php-version: '8.1'
 
-      - name: 📦 Install Composer Dependencies
-        run: composer install --no-ansi --no-interaction --no-progress --no-scripts --no-suggest --optimize-autoloader
+      # - name: 📦 Install Composer Dependencies
+      #   run: composer install --no-ansi --no-interaction --no-progress --no-scripts --no-suggest --optimize-autoloader
       
       - name: 🧪 Run Unit Tests
         run: vendor/bin/phpunit --testsuite=Unit
